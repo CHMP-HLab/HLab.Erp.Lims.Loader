@@ -1,0 +1,12 @@
+[submodule "HLab.Erp.Lims.Analysis"]
+	path = HLab.Erp.Lims.Analysis
+	url = ../HLab.Erp.Lims.Analysis
+[submodule "HLab.Erp"]
+	path = HLab.Erp
+	url = ../HLab.Erp
+[submodule "HLab"]
+	path = HLab
+	url = ../HLab
+[submodule "HLab.Erp.Lims.Monographs"]
+	path = HLab.Erp.Lims.Monographs
+	url = ../HLab.Erp.Lims.Monographs
