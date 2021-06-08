@@ -17,6 +17,7 @@
     <Company>CHMP</Company>
     <Copyright>Mathieu GRENET CHMP</Copyright>
     <PackageProjectUrl>https://github.com/CHMP-HLab/HLab.Erp.Lims.Analysis</PackageProjectUrl>
+    <StartupObject>HLab.Erp.Lims.Analysis.Loader.App</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
