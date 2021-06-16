@@ -105,6 +105,9 @@ namespace HLab.Erp.Lims.Analysis.Loader
             NotifyHelper.EventHandlerService = Locate<IEventHandlerService>();
 
 
+            _ = SampleWorkflow.Production;
+            _ = SampleTestWorkflow.ValidatedResults;
+            _ = SampleTestResultWorkflow.Checked;
 
 
             //Locator.SetFactory(typeof(IDataLocker<>),);
