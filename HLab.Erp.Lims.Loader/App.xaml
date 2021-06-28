@@ -11,6 +11,13 @@
                 <converters:ToVisibilityConverter x:Key="ToVisibilityConverter" TrueValue="Visible" FalseValue="Collapsed"/>
                 <converters:ToVisibilityConverter x:Key="ToCollapsedConverter" TrueValue="Collapsed" FalseValue="Visible"/>
                 <Visibility x:Key="DebugVisibility" >Visible</Visibility>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Style.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="3" />
+                            </Style>
+                        </Style.Resources>
+                    </Style>
             </ResourceDictionary>
             <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
             <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
