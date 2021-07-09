@@ -11,9 +11,9 @@ using HLab.Erp.Base.Data;
 using HLab.Erp.Base.Wpf.Entities.Customers;
 using HLab.Erp.Core;
 using HLab.Erp.Core.DragDrops;
-using HLab.Erp.Core.EntityLists;
-using HLab.Erp.Core.Localization;
+using HLab.Erp.Core.Wpf.EntityLists;
 using HLab.Erp.Core.WebService;
+using HLab.Erp.Core.Wpf.Localization;
 using HLab.Erp.Data;
 using HLab.Erp.Data.Observables;
 using HLab.Erp.Lims.Analysis.Data;
@@ -99,7 +99,7 @@ namespace HLab.Erp.Lims.Analysis.Loader
             Locator.SetOpenGenericFactory(typeof(IEntityListHelper<>),typeof(EntityListHelper<>));
             Locator.SetOpenGenericFactory(typeof(IColumnsProvider<>),typeof(ColumnsProvider<>));
             Locator.SetOpenGenericFactory(typeof(IObservableQuery<>),typeof(ObservableQuery<>));
-            Locator.SetOpenGenericFactory(typeof(IEntityListViewModel<>),typeof(EntityListViewModel<>));
+            //Locator.SetOpenGenericFactory(typeof(IEntityListViewModel<>),typeof(EntityListViewModel<>));
             Locator.SetOpenGenericFactory(typeof(IDataLocker<>),typeof(DataLocker<>));
 
             NotifyHelper.EventHandlerService = Locate<IEventHandlerService>();
@@ -151,20 +151,21 @@ namespace HLab.Erp.Lims.Analysis.Loader
 
             parser.LoadModules();
 
-            parser.Add<IView>(t => EnumerableLocator<IView>.AddAutoFactory(t));
-            parser.Add<IViewModel>(t => EnumerableLocator<IViewModel>.AddAutoFactory(t));
+            parser.Add<IView>(EnumerableLocator<IView>.AddAutoFactory);
+            parser.Add<IViewModel>(EnumerableLocator<IViewModel>.AddAutoFactory);
 
-            parser.Add<IBootloader>(t => EnumerableLocator<IBootloader>.AddAutoFactory(t));
-            parser.Add<IToolGraphBlock>(t => EnumerableLocator<IToolGraphBlock>.AddAutoFactory(t));
-            parser.Add<IEntityListViewModel>(t =>
+            parser.Add<IBootloader>(EnumerableLocator<IBootloader>.AddAutoFactory);
+            parser.Add<IToolGraphBlock>(EnumerableLocator<IToolGraphBlock>.AddAutoFactory);
+            parser.Add<IEntityListViewModel>(listType =>
             {
-                if(t.IsGenericType) return;
-                foreach(var i in t.GetInterfaces().Where(i => i.IsGenericType))
+                if(listType.IsGenericType) return;
+
+                foreach(var interfaceType in listType.GetInterfaces().Where(i => i.IsGenericType))
                 {
-                    if(i.GetGenericTypeDefinition()==typeof(IEntityListViewModel<>))
+                    if(interfaceType.GetGenericTypeDefinition()==typeof(IEntityListViewModel<>))
                     {
-                        var type = i.GetGenericArguments()[0];
-                        Locator.Set(i,t);
+                        var entityType = interfaceType.GetGenericArguments()[0];
+                        Locator.Set(interfaceType,listType);
                     }
                 }
             });
