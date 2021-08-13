@@ -172,6 +172,7 @@ namespace HLab.Erp.Lims.Analysis.Loader
                     }
                 }
             });
+
             parser.Parse();
 
             Locator.InitSingletons();
