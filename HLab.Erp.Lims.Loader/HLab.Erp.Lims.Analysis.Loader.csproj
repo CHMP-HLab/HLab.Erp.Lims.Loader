@@ -7,7 +7,7 @@
     <ApplicationIcon>LogoChmp.ico</ApplicationIcon>
     <Platforms>AnyCPU;x86;x64</Platforms>
     <Configurations>Debug;Release;DebugRelease</Configurations>
-    <Version>2.2.3</Version>
+    <Version>2.2.4</Version>
     <Authors>Mathieu GRENET</Authors>
     <Product>HLab Erp Lims Analysis</Product>
     <RepositoryUrl>https://github.com/CHMP-HLab/HLab.Erp.Lims.Analysis</RepositoryUrl>
@@ -18,8 +18,8 @@
     <Copyright>CHMP</Copyright>
     <PackageProjectUrl>https://github.com/CHMP-HLab/HLab.Erp.Lims.Analysis</PackageProjectUrl>
     <StartupObject>HLab.Erp.Lims.Analysis.Loader.App</StartupObject>
-    <AssemblyVersion>2.2.3.0</AssemblyVersion>
-    <FileVersion>2.2.2.0</FileVersion>
+    <AssemblyVersion>2.2.4.0</AssemblyVersion>
+    <FileVersion>2.2.4.0</FileVersion>
     <LangVersion>default</LangVersion>
   </PropertyGroup>
 
