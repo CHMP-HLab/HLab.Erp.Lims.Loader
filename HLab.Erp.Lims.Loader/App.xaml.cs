@@ -54,10 +54,8 @@ namespace HLab.Erp.Lims.Analysis.Loader
 
         protected override void OnStartup(StartupEventArgs e)
         {
-#if !DEBUG
             try
             {
-#endif
                 base.OnStartup(e);
 
                 var parser = new AssemblyParser();
@@ -193,19 +191,25 @@ namespace HLab.Erp.Lims.Analysis.Loader
                 var boot = new Bootstrapper(() => Locate<IEnumerable<IBootloader>>());
 
                 boot.Boot();
-#if !DEBUG
             }
             catch (Exception ex)
             {
-                var view = new ExceptionView { Exception = ex };
+                var view = new ExceptionView {
+                    Exception = ex 
+                    //, Token = "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"
+                    , Token = "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"
+                    };
                 view.ShowDialog();
-                throw;
+#if DEBUG
+                //throw;
                 ExceptionDispatchInfo.Capture(ex).Throw();
-            }
 #endif        
+
+
+
+
+            }
         }
-
-
 
     }
 }
