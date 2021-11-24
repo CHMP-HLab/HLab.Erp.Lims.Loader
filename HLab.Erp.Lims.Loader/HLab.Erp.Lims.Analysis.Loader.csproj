@@ -7,7 +7,7 @@
     <ApplicationIcon>LogoChmp.ico</ApplicationIcon>
     <Platforms>AnyCPU;x86;x64</Platforms>
     <Configurations>Debug;Release;DebugRelease</Configurations>
-    <Version>2.2.7</Version>
+    <Version>2.3</Version>
     <Authors>Mathieu GRENET</Authors>
     <Product>HLab Erp Lims Analysis</Product>
     <RepositoryUrl>https://github.com/CHMP-HLab/HLab.Erp.Lims.Analysis</RepositoryUrl>
@@ -18,8 +18,8 @@
     <Copyright>CHMP</Copyright>
     <PackageProjectUrl>https://github.com/CHMP-HLab/HLab.Erp.Lims.Analysis</PackageProjectUrl>
     <StartupObject>HLab.Erp.Lims.Analysis.Loader.App</StartupObject>
-    <AssemblyVersion>2.2.8.0</AssemblyVersion>
-    <FileVersion>2.2.8.0</FileVersion>
+    <AssemblyVersion>2.3.0.0</AssemblyVersion>
+    <FileVersion>2.3.0.0</FileVersion>
     <LangVersion>default</LangVersion>
   </PropertyGroup>
 
@@ -37,11 +37,11 @@
 
   <ItemGroup>
     <PackageReference Include="MahApps.Metro" Version="2.4.9" />
-    <PackageReference Include="System.Data.Odbc" Version="5.0.0" />
-    <PackageReference Include="System.Data.OleDb" Version="5.0.0" />
-    <PackageReference Include="System.IO.Ports" Version="5.0.1" />
-    <PackageReference Include="System.ServiceModel.Syndication" Version="5.0.0" />
-    <PackageReference Include="System.ServiceProcess.ServiceController" Version="5.0.0" />
+    <PackageReference Include="System.Data.Odbc" Version="6.0.0" />
+    <PackageReference Include="System.Data.OleDb" Version="6.0.0" />
+    <PackageReference Include="System.IO.Ports" Version="6.0.0" />
+    <PackageReference Include="System.ServiceModel.Syndication" Version="6.0.0" />
+    <PackageReference Include="System.ServiceProcess.ServiceController" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>

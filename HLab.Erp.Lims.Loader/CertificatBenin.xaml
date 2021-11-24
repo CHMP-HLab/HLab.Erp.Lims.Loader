@@ -1,0 +1,327 @@
+﻿<Page 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Width="210" Height="297"
+    Background="White"
+    >
+    <Page.Resources>
+        <Style x:Key="{x:Type TextBlock}" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="3 pt"/>
+            <Setter Property="UseLayoutRounding" Value="True"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <TextBlock
+            Text="APERÇU" 
+            Foreground="#FFF0F0F0" 
+            Tag="Apercu" FontSize="70" 
+            FontWeight="Bold" RenderTransformOrigin="0.5,0.5" 
+            UseLayoutRounding="False" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center" 
+            TextAlignment="Center" Padding="0,0,0,10">
+            <TextBlock.LayoutTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="-55"/>
+                </TransformGroup>
+            </TextBlock.LayoutTransform>
+        </TextBlock>
+        
+        <TextBlock 
+            Text="ANCQ" 
+            Foreground="#FFF0F0F0" 
+            Tag="Apercu" FontSize="70" 
+            FontWeight="Bold" RenderTransformOrigin="0.5,0.5" 
+            UseLayoutRounding="False" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center" 
+            TextAlignment="Center" Padding="0,0,0,10">
+            <TextBlock.LayoutTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="-55"/>
+                </TransformGroup>
+            </TextBlock.LayoutTransform>
+        </TextBlock>
+
+        <Grid Width="195" Height="287" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Image Grid.Row="0" Stretch="Uniform" Source="HLab.Erp.Lims.Analysis.Module;component/Resources/Entete_ANCQ.png"/>
+                
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Column="1" FontSize="6" FontWeight="Bold" HorizontalAlignment="Center">Certificat d’analyse</TextBlock>
+                    <Border Grid.Column="1" BorderThickness="0.25" BorderBrush="Black"/>
+                    <TextBlock Grid.Column="2" HorizontalAlignment="Center">Original</TextBlock>
+                    
+                </Grid>
+                
+                <StackPanel Grid.Row="2">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <TextBlock Text="Cotonou, le "/>
+                        <TextBlock>{ReportDate}</TextBlock>
+                    </StackPanel>
+                    
+                    <TextBlock TextWrapping="Wrap" FontWeight="Bold" HorizontalAlignment="Left">N° {ReportReference}</TextBlock>
+                    
+                </StackPanel>
+
+
+            </Grid>
+            
+            <Grid Grid.Row="1" Tag="PremierePageUniquement">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <Border Background="#4472C4" Grid.ColumnSpan="2"/>
+                <!--Demandeur-->
+                <StackPanel Orientation="Horizontal" Margin="1" Grid.Row="1" Grid.Column="0">
+                    <TextBlock FontSize="2pt" FontWeight="Bold" Text="">DEMANDEUR &amp; COORDONNÉES : </TextBlock>
+                    <TextBlock FontSize="2.25pt" >{Customer.Name} {Customer.Address} {Customer.Email}</TextBlock>
+                </StackPanel>
+                <!--Nom commercial-->
+                <StackPanel Orientation="Horizontal" Margin="1" Grid.Row="2" Grid.Column="0">
+                    <TextBlock FontSize="2pt" FontWeight="Bold"  Text="NOM COMMERCIAL : "/>
+                    <TextBlock FontSize="2.25pt" >{CommercialName}</TextBlock>
+                </StackPanel>
+                <!--DCI Dosage-->
+                <StackPanel Orientation="Horizontal" Margin="1" Grid.Row="3" Grid.Column="0">
+                    <TextBlock FontSize="2pt" FontWeight="Bold"  Text="{}{Product.Category.NamePropertyName} &amp; {Product.Category.VariantPropertyName} : "/>
+                    <TextBlock FontSize="2.25pt" >{Product.Name} {Product.Variant}</TextBlock>
+                </StackPanel>
+                <!--Forme-->
+                <StackPanel Orientation="Horizontal" Margin="1" Grid.Row="4" Grid.Column="0">
+                    <TextBlock FontSize="2pt" FontWeight="Bold"  Text="FORME &amp; PRÉSENTATION : "/>
+                    <TextBlock FontSize="2.25pt" >{Product.Form} ; {PrimaryPackaging}</TextBlock>
+                </StackPanel>
+                <!--Fabricant-->
+                <StackPanel Orientation="Horizontal" Margin="1" Grid.Row="5" Grid.Column="0">
+                    <TextBlock FontSize="2pt" FontWeight="Bold"  Text="NOM &amp; PAYS FABRICANT : "/>
+                    <TextBlock FontSize="2.25pt" >{Manufacturer.Name} {Manufacturer.Address}</TextBlock>
+                </StackPanel>
+                <!--Fabricant-->
+                <StackPanel Orientation="Horizontal" Margin="1" Grid.Row="6" Grid.Column="0">
+                    <TextBlock FontSize="2pt" FontWeight="Bold"  Text="DATE DE PRÉLÈVEMENT : "></TextBlock>
+                    <TextBlock FontSize="2.25pt" >{Customer.Name} {Customer.Address} {Customer.Email}</TextBlock>
+                </StackPanel>
+                <!--Reception-->
+                <StackPanel Orientation="Horizontal" Margin="1" Grid.Row="7" Grid.Column="0">
+                    <TextBlock FontSize="2pt" FontWeight="Bold"  Text="DATE DE RÉCEPTION : "></TextBlock>
+                    <TextBlock FontSize="2.25pt" >{ReceptionDate}</TextBlock>
+                </StackPanel>
+                
+                <!--Lot-->
+                <StackPanel Orientation="Horizontal" Margin="1" Grid.Row="2" Grid.Column="1">
+                    <TextBlock FontSize="2pt" FontWeight="Bold" Text="LOT N° : "/>
+                    <TextBlock FontSize="2.25pt" >{Batch}</TextBlock>
+                </StackPanel>
+                <!--Fabrication-->
+                <StackPanel Orientation="Horizontal" Margin="1" Grid.Row="4" Grid.Column="1">
+                    <TextBlock FontSize="2pt" FontWeight="Bold" Text="DATE DE FABRICATION : "/>
+                    <TextBlock FontSize="2.25pt" >{ManufactureDate}</TextBlock>
+                </StackPanel>
+                <!--Peremption-->
+                <StackPanel Orientation="Horizontal" Margin="1" Grid.Row="5" Grid.Column="1">
+                    <TextBlock FontSize="2pt" FontWeight="Bold" Text="DATE DE PÉREMPTION : "/>
+                    <TextBlock FontSize="2.25pt" >{ExpirationDate}</TextBlock>
+                </StackPanel>
+                <!--Début-->
+                <StackPanel Orientation="Horizontal" Margin="1" Grid.Row="6" Grid.Column="1">
+                    <TextBlock FontSize="2pt" FontWeight="Bold" Text="DATE DE DÉBUT D’ANALYSE : "/>
+                    <TextBlock FontSize="2.25pt" >{AnalysisStart}</TextBlock>
+                </StackPanel>
+                <!--Fin-->
+                <StackPanel Orientation="Horizontal" Margin="1" Grid.Row="7" Grid.Column="1">
+                    <TextBlock FontSize="2pt" FontWeight="Bold" Text="DATE DE FIN D’ANALYSE : "/>
+                    <TextBlock FontSize="2.25pt" >{AnalysisEnd}</TextBlock>
+                </StackPanel>                
+                
+            </Grid>
+
+
+
+            <!-- Tableau -->
+            <Grid Grid.Row="4" Margin="0,1">
+                <DockPanel>
+                    <Grid DockPanel.Dock="Top" Background="#92D050">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="59"/>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="35"/>
+                            <ColumnDefinition Width="35"/>
+                            <ColumnDefinition Width="25"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Foreground="White" Grid.Column="0" Text="{}{FR=Date}{US=Date}" HorizontalAlignment="Center" FontWeight="Bold" />
+                        <TextBlock Foreground="White" Grid.Column="1" Grid.ColumnSpan="2" Text="{}{FR=Tests}{US=Tests}" HorizontalAlignment="Left" FontWeight="Bold" />
+                        <TextBlock Foreground="White" Grid.Column="2" Text="{}{FR=Références}{US=References}" HorizontalAlignment="Center"  FontWeight="Bold" />
+                        <TextBlock Foreground="White" Grid.Column="3"  Text="{}{FR=Spécifications}{US=Specifications}" HorizontalAlignment="Center" FontWeight="Bold" TextAlignment="Center" />
+                        <TextBlock Foreground="White" Grid.Column="4" Grid.ColumnSpan="1" Text="{}{FR=Résultats}{US=Results}" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold"  />
+                        <TextBlock Foreground="White" Grid.Column="5" Grid.ColumnSpan="1" Text="Interpretation" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" />
+                        <Line Grid.ColumnSpan="6" Margin="0,5,0,0" VerticalAlignment="Top" Stroke="Black" StrokeThickness="0.25" X2="194"/>
+
+                    </Grid>
+
+                    <StackPanel Name="PanelContenu">
+                        <!--Detail.Start-->
+                        <StackPanel xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+                        <!--Titre.Start-->
+                            <TextBlock Name="Titre" Height="5" Text="{}{Titre}" Background="#FFDCDCDC" FontWeight="Bold" />
+                        <!--Titre.End-->
+
+                            <StackPanel Name="Test" Orientation="Horizontal">
+                                <TextBlock Text="{}{Date}" Width="19" Margin="1,0,0,0" TextAlignment="Left" HorizontalAlignment="Left"/>
+                                <TextBlock Text="{}{Description}" Width="48" Margin="1,0,0,0" TextWrapping="Wrap" TextAlignment="Left" HorizontalAlignment="Left"/>
+                                <TextBlock Text="{}{Reference}" Width="29" Margin="1,0,0,0" TextWrapping="Wrap"  TextAlignment="Left" HorizontalAlignment="Left"/>
+                                <TextBlock Text="{}{Specification}" Width="34" Margin="1,0,0,0" TextWrapping="Wrap"  TextAlignment="Center" HorizontalAlignment="Left"/>
+                                <TextBlock Text="{}{Result}" Width="35" Margin="1,0,0,0" TextWrapping="Wrap"  TextAlignment="Center" HorizontalAlignment="Left"/>
+                                <TextBlock Text="{}{Conform}" Width="25" Margin="1,0,0,0" TextWrapping="Wrap"  TextAlignment="Center" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <!--Detail.End-->
+                    </StackPanel>
+                </DockPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="59"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="35"/>
+                        <ColumnDefinition Width="35"/>
+                        <ColumnDefinition Width="25"/>
+                    </Grid.ColumnDefinitions>
+                    <!--<Line Grid.Column="1" Stroke="Black" StrokeThickness="0.25" Y1="10" Y2="200"/>-->
+                    <Line Grid.Column="2" Stroke="Black" StrokeThickness="0.25" Y2="200"/>
+                    <Line Grid.Column="3" Stroke="Black" StrokeThickness="0.25" Y2="200"/>
+                    <Line Grid.Column="4" Stroke="Black" StrokeThickness="0.25" Y2="200"/>
+                    <Line Grid.Column="5" Stroke="Black" StrokeThickness="0.25" Y2="200"/>
+
+                </Grid>
+
+                <Rectangle StrokeThickness="0.25" Stroke="Black" />
+            </Grid>
+
+            <Grid Grid.Row="5" Margin="0,1"/>
+
+            <Grid Grid.Row="6" Tag="DernierePageUniquement">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Border BorderThickness="0.25" BorderBrush="#BFBFBF" />
+                <Border Grid.Row="1" Grid.Column="0"  BorderBrush="#BFBFBF"/>
+
+                <TextBlock FontSize="2pt" Grid.Row="0">Conclusion : Échantillon analysé {Conformity} pour les tests effectués selon les spécifications prises en référence</TextBlock>
+                <TextBlock FontSize="2pt" Grid.Row="1">Commentaires | Remarques : Ces résultats ne concernent que l’échantillon soumis aux essais</TextBlock>
+
+            </Grid>
+<!--Conclusion.Start-->
+            <Grid Grid.Row="7" Margin="0,1"  Tag="DernierePageUniquement" Visibility="Visible"><!--{ConclusionVisibility}-->
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border BorderThickness="0.25" BorderBrush="Black" Background="LightGray"/>
+                <Border BorderThickness="0.25" BorderBrush="Black" Grid.Row="1" />
+                <TextBlock Margin ="1" Grid.Row="0" HorizontalAlignment="Center" FontWeight="Bold">Observations</TextBlock>
+                <TextBlock Margin ="1"  HorizontalAlignment="Center" Grid.Row="1">{Conclusion}</TextBlock>
+            </Grid>
+<!--Conclusion.End-->
+            
+            <Grid Height="38" Grid.Row="8" Margin="0,2,0,1" Tag="DernierePageUniquement">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="6"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="6"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.ColumnSpan="3" BorderThickness="0.25" BorderBrush="Black" Grid.RowSpan="4"></Border>
+
+
+                <TextBlock Grid.Row="0" Grid.Column="0"  HorizontalAlignment="Center">{Validator.Function}</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Responsable AQ</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center">Directeur</TextBlock>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center">{Validator.Caption}</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center">Jean Marie C. ASSANH</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center">Loconon Y. Achille YEMOA</TextBlock>
+            </Grid>
+            
+            <Grid Grid.Row="9">
+                <StackPanel>
+                <TextBlock FontSize="2.25pt" Foreground="#4E4E4E" HorizontalAlignment="Center">ATTENTION : Toute reproduction totale ou partielle de ce certificat est strictement interdite sans l’accord écrit de l’ANCQ</TextBlock>
+                <TextBlock HorizontalAlignment="Right" Grid.Row="3" FontWeight="Bold" Background="#C0C0C0" Foreground="#00A038">Page : {Page}|{NbPages}</TextBlock>
+                    <Grid Width="60" Height="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Border Background="Green"/>
+                        <Border Grid.Column="1" Background="#FFD000"/>
+                        <Border Grid.Column="2" Background="Red"/>
+                    </Grid>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,1,0,0">
+                        <TextBlock FontSize="2pt" FontWeight="Bold" Text="Tél : "></TextBlock>
+                        <TextBlock FontSize="2pt" >21 33 45 86 - 21 33 78 37 - 06</TextBlock>
+                        <TextBlock FontSize="2pt" FontWeight="Bold" Text=" BP : "></TextBlock>
+                        <TextBlock FontSize="2pt" Text="139 AKPAKPA - DONANTIN - "/>
+
+                        <TextBlock FontSize="2pt" FontWeight="Bold">www.ancq.bj</TextBlock>
+                        
+                        <TextBlock FontSize="2pt" Text=" - email : "/>
+                        
+                        <TextBlock FontSize="2pt" FontWeight="Bold">infos@ancq.bj</TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
