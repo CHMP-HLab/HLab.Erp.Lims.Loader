@@ -23,7 +23,6 @@ using HLab.Erp.Lims.Analysis.Data;
 using HLab.Erp.Lims.Analysis.Data.Workflows;
 using HLab.Erp.Lims.Analysis.Module.Manufacturers;
 using HLab.Erp.Lims.Monographs.Data;
-using HLab.Erp.Units;
 using HLab.Icons.Annotations.Icons;
 using HLab.Icons.Wpf.Icons;
 using HLab.Ioc;
@@ -188,7 +187,7 @@ namespace HLab.Erp.Lims.Analysis.Loader
                 var doc = Locate<IDocumentService>();
                 doc.MainViewModel = Locate<MainWpfViewModel>();
 
-                var boot = new Bootstrapper(() => Locate<IEnumerable<IBootloader>>());
+                var boot = new Bootstrapper(Locate<IEnumerable<IBootloader>>);
 
                 boot.Boot();
             }
