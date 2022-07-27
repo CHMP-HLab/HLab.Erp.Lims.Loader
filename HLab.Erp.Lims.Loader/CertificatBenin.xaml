@@ -193,12 +193,12 @@
                             <ColumnDefinition Width="35"/>
                             <ColumnDefinition Width="25"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Foreground="White" Grid.Column="0" Text="{}{FR=Date}{US=Date}" HorizontalAlignment="Center" FontWeight="Bold" />
-                        <TextBlock Foreground="White" Grid.Column="1" Grid.ColumnSpan="2" Text="{}{FR=Tests}{US=Tests}" HorizontalAlignment="Left" FontWeight="Bold" />
-                        <TextBlock Foreground="White" Grid.Column="2" Text="{}{FR=Références}{US=References}" HorizontalAlignment="Center"  FontWeight="Bold" />
-                        <TextBlock Foreground="White" Grid.Column="3"  Text="{}{FR=Spécifications}{US=Specifications}" HorizontalAlignment="Center" FontWeight="Bold" TextAlignment="Center" />
-                        <TextBlock Foreground="White" Grid.Column="4" Grid.ColumnSpan="1" Text="{}{FR=Résultats}{US=Results}" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold"  />
-                        <TextBlock Foreground="White" Grid.Column="5" Grid.ColumnSpan="1" Text="Interpretation" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" />
+                        <TextBlock Foreground="{DynamicResource HLab.Brushes.Foreground}" Grid.Column="0" Text="{}{FR=Date}{US=Date}" HorizontalAlignment="Center" FontWeight="Bold" />
+                        <TextBlock Foreground="{DynamicResource HLab.Brushes.Foreground}" Grid.Column="1" Grid.ColumnSpan="2" Text="{}{FR=Tests}{US=Tests}" HorizontalAlignment="Left" FontWeight="Bold" />
+                        <TextBlock Foreground="{DynamicResource HLab.Brushes.Foreground}" Grid.Column="2" Text="{}{FR=Références}{US=References}" HorizontalAlignment="Center"  FontWeight="Bold" />
+                        <TextBlock Foreground="{DynamicResource HLab.Brushes.Foreground}" Grid.Column="3"  Text="{}{FR=Spécifications}{US=Specifications}" HorizontalAlignment="Center" FontWeight="Bold" TextAlignment="Center" />
+                        <TextBlock Foreground="{DynamicResource HLab.Brushes.Foreground}" Grid.Column="4" Grid.ColumnSpan="1" Text="{}{FR=Résultats}{US=Results}" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold"  />
+                        <TextBlock Foreground="{DynamicResource HLab.Brushes.Foreground}" Grid.Column="5" Grid.ColumnSpan="1" Text="Interpretation" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" />
                         <Line Grid.ColumnSpan="6" Margin="0,5,0,0" VerticalAlignment="Top" Stroke="Black" StrokeThickness="0.25" X2="194"/>
 
                     </Grid>

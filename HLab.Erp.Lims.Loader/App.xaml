@@ -19,13 +19,9 @@
                         </Style.Resources>
                     </Style>
             </ResourceDictionary>
-            <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
-            <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
-            <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/dark.steel.xaml" />
 
-            <ResourceDictionary Source="pack://application:,,,/HLab.Base.Wpf;component/Themes/HLab.Theme.Dark.xaml" />
+            <ResourceDictionary Source="pack://application:,,,/HLab.Base.Wpf;component/Themes/HLab.Theme.Light.xaml" />
 
-            <!--<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/light.blue.xaml" />-->
         </ResourceDictionary.MergedDictionaries>
          </ResourceDictionary>
     </Application.Resources>
