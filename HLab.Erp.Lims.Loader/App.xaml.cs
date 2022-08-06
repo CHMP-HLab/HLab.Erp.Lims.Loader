@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Windows;
 using Grace.DependencyInjection;
+using HLab.Base.Wpf.Themes;
 using HLab.Bugs.Wpf;
 using HLab.Core;
 using HLab.Core.Annotations;
@@ -45,30 +46,27 @@ using HLab.Options.Wpf;
 
 namespace HLab.Erp.Lims.Analysis.Loader
 {
-
-
-
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application
     {
-        //private T Locate<T>() => Locator<T>.Locate();
 
         protected override void OnStartup(StartupEventArgs e)
         {
             try
             {
                 base.OnStartup(e);
-                var container = new DependencyInjectionContainer();
 
-                //Locator.Configure();
+                var theme = new ThemeService(Resources);
+
+                var container = new DependencyInjectionContainer();
 
                 container.Configure(c =>
                 {
                     c.Export<OptionsServices>().As<IOptionsService>().Lifestyle.Singleton();
                     c.Export<EventHandlerServiceWpf>().As<IEventHandlerService>().Lifestyle.Singleton();
-                    c.Export<MessageBus>().As<IMessageBus>().Lifestyle.Singleton();
+                    c.Export<MessageBus>().As<IMessagesService>().Lifestyle.Singleton();
 
                     c.Export<AclService>().As<IAclService>().Lifestyle.Singleton();
                     c.Export<AclHelperWpf>().As<IAclHelper>().Lifestyle.Singleton();
@@ -86,7 +84,6 @@ namespace HLab.Erp.Lims.Analysis.Loader
                     c.Export<IconService>().As<IIconService>().Lifestyle.Singleton();
                     c.Export<LocalizationService>().As<ILocalizationService>().Lifestyle.Singleton();
                     c.Export<MvvmServiceWpf>().As<IMvvmService>().Lifestyle.Singleton();
-                    c.Export<ErpServices>().As<IErpServices>().Lifestyle.Singleton();
                     c.Export<ApplicationInfoService>().As<IApplicationInfoService>().Lifestyle.Singleton();
                     c.Export<DocumentServiceWpf>().As<IDocumentService>().Lifestyle.Singleton();
                     c.Export<MenuService>().As<IMenuService>().Lifestyle.Singleton();
@@ -102,9 +99,7 @@ namespace HLab.Erp.Lims.Analysis.Loader
                     c.Export(typeof(ColumnsProvider<>)).As(typeof(IColumnsProvider<>));
                     c.Export(typeof(ObservableQuery<>)).As(typeof(IObservableQuery<>));
                     c.Export(typeof(DataLocker<>)).As(typeof(IDataLocker<>));
-                    //c.ExportWrapper(typeof(DataLocker<>)).As(typeof(IDataLocker<>));
 
-                    //c.ExportDecorator(typeof(DataLocker<>)).As(typeof(IDataLocker<>));
                     var parser = new AssemblyParser();
 
                     //var a0 = boot.LoadDll("HLab.Erp.Core.Wpf");
@@ -145,84 +140,16 @@ namespace HLab.Erp.Lims.Analysis.Loader
 
                     c.ExportInitialize<Entity>(o => o.DataService = container.Locate<IDataService>());
                     c.ExportInitialize<GraphElement>(o => o.MvvmService = container.Locate<IMvvmService>());
-                    c.ExportInitialize<NestedBootloader>(o => o.Erp = container.Locate<IErpServices>());
+                    c.ExportInitialize<NestedBootloader>(o =>
+                    {
+                        o.Menu = container.Locate<IMenuService>();
+                        o.Docs = container.Locate<IDocumentService>();
+                    });
                 });
-
-//                SingletonLocator<IOptionsService>.Set<OptionsServices>();
-
-//                SingletonLocator<IEventHandlerService>.Set<EventHandlerServiceWpf>();
-//                SingletonLocator<IAclService>.Set<AclService>();
-//                SingletonLocator<IAclHelper>.Set<AclHelperWpf>();
-//                SingletonLocator<IDebugLogger>.Set<DebugLogger>();
-//                SingletonLocator<IDataService>.Set<DataService>();
-//                SingletonLocator<IMessageBus>.Set<MessageBus>();
-                //SingletonLocator<IDragDropService>.Set<DragDropServiceWpf>();
-                //SingletonLocator<IDialogService>.Set<DialogService>();
-                //SingletonLocator<ICurrencyService>.Set<CurrencyService>();
-
-                //SingletonLocator<IUnitService>.Set<UnitService>();
-
-                //SingletonLocator<IGraphService>.Set<GraphService>();
-                //SingletonLocator<IBrowserService>.Set<BrowserViewModel>();
-                //SingletonLocator<IIconService>.Set<IconService>();
-                //SingletonLocator<ILocalizationService>.Set<LocalizationService>();
-                //SingletonLocator<IMvvmService>.Set<MvvmServiceWpf>();
-                //SingletonLocator<IErpServices>.Set<ErpServices>();
-                //SingletonLocator<IApplicationInfoService>.Set<ApplicationInfoService>();
-                //SingletonLocator<IDocumentService>.Set<DocumentServiceWpf>();
-                //SingletonLocator<IMenuService>.Set<MenuService>();
-
-                //SingletonLocator<LocalizeFromDb>.Set<LocalizeFromDb>();
-
-                //Locator<ILoginViewModel>.Set<LoginViewModel>();
-                //Locator<IAuditTrailProvider>.Set<AuditTrailMotivationViewModel>();
-                //Locator<ISelectedMessage>.Set<SelectedMessage>();
-
-                //SingletonLocator<MainWpfViewModel>.Set<MainWpfViewModel>();
-
-                //Locator.SetOpenGenericFactory(typeof(IEntityListHelper<>), typeof(EntityListHelper<>));
-                //Locator.SetOpenGenericFactory(typeof(IColumnsProvider<>), typeof(ColumnsProvider<>));
-                //Locator.SetOpenGenericFactory(typeof(IObservableQuery<>), typeof(ObservableQuery<>));
-                ////Locator.SetOpenGenericFactory(typeof(IEntityListViewModel<>),typeof(EntityListViewModel<>));
-                //Locator.SetOpenGenericFactory(typeof(IDataLocker<>), typeof(DataLocker<>));
-
-                NotifyHelper.EventHandlerService = container.Locate<IEventHandlerService>();
-
 
                 _ = SampleWorkflow.Production;
                 _ = SampleTestWorkflow.ValidatedResults;
                 _ = SampleTestResultWorkflow.Checked;
-
-
-                //Locator.SetFactory(typeof(IDataLocker<>),);
-
-                /*            
-
-
-                            .Export(typeof(DataLocker<>)).As(typeof(IDataLocker<>))
-
-                              .Export(typeof(ColumnsProvider<>)).As(typeof(IColumnsProvider<>))
-                             .Export(typeof(ListableEntityListViewModel<>)).As(typeof(IListableEntityListViewModel<>))
-                             .Export(typeof(ColumnConfigurator<,,>)).As(typeof(IColumnConfigurator<,,>))
-                             .Export(typeof(ColumnHelper<>)).As(typeof(IColumn<>.IHelper))
-                             .Export(typeof(ObservableQuery<>)).As(typeof(ObservableQuery<>))
-                             .Export(typeof(EntityListHelper<>)).As(typeof(IEntityListHelper<>))
-
-                             .Export<MvvmContext>().As<IMvvmContext>()
-                             .Export<SelectedMessage>().As<ISelectedMessage>()
-                             .Export<DetailsPanelViewModel>().As<DetailsPanelViewModel>()
-
-                             );
-                ;
-
-                */
-                //boot.Scope.ExportInitialize<BootLoaderErpWpf>(b => b.SetMainViewMode(typeof(ViewModeKiosk)));
-
-
-
-
-
-                //Locator.InitSingletons();
 
                 var options = container.Locate<IOptionsService>();
                 options.OptionsPath = "HLab.Erp";
@@ -241,10 +168,21 @@ namespace HLab.Erp.Lims.Analysis.Loader
                 var doc = container.Locate<IDocumentService>();
                 doc.MainViewModel = container.Locate<MainWpfViewModel>();
 
+                var info = container.Locate<IApplicationInfoService>();
+                info.PropertyChanged += (s,a) =>
+                {
+                    if (a.PropertyName == "Theme")
+                    {
+                        theme.SetTheme(info.Theme switch
+                        {
+                            "Sombre" => ThemeService.WindowsTheme.Dark,
+                            "Clair" => ThemeService.WindowsTheme.Light,
+                            _ => ThemeService.WindowsTheme.Auto
+                        });
+                    }
+                };
+
                 var boot = new Bootstrapper(container.Locate<IEnumerable<IBootloader>>);
-
-                
-
                 boot.Boot();
             }
             catch (Exception ex)
@@ -261,5 +199,6 @@ namespace HLab.Erp.Lims.Analysis.Loader
 #endif        
             }
         }
+
     }
 }
