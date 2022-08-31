@@ -173,30 +173,32 @@ namespace HLab.Erp.Lims.Analysis.Loader
                 {
                     if (a.PropertyName == "Theme")
                     {
-                        theme.SetTheme(info.Theme switch
-                        {
-                            "Sombre" => ThemeService.WindowsTheme.Dark,
-                            "Clair" => ThemeService.WindowsTheme.Light,
-                            _ => ThemeService.WindowsTheme.Auto
-                        });
+                        theme.SetTheme(info.Theme);
                     }
                 };
+                theme.SetTheme(info.Theme);
+
 
                 var boot = new Bootstrapper(container.Locate<IEnumerable<IBootloader>>);
                 boot.Boot();
             }
             catch (Exception ex)
             {
-                var view = new ExceptionView {
-                    Exception = ex 
-                    //, Token = "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"
-                    , Token = "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"
-                    };
-                view.ShowDialog();
-#if DEBUG
-                //throw;
-                ExceptionDispatchInfo.Capture(ex).Throw();
-#endif        
+
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    var view = new ExceptionView {
+                        Exception = ex 
+                        //, Token = "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"
+                        , Token = "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"
+                        };
+                    view.ShowDialog();
+    #if DEBUG
+                    //throw;
+                    ExceptionDispatchInfo.Capture(ex).Throw();
+    #endif        
+
+                });
             }
         }
 
