@@ -86,6 +86,7 @@ namespace HLab.Erp.Lims.Analysis.Loader
                     c.Export<MvvmServiceWpf>().As<IMvvmService>().Lifestyle.Singleton();
                     c.Export<ApplicationInfoService>().As<IApplicationInfoService>().Lifestyle.Singleton();
                     c.Export<DocumentServiceWpf>().As<IDocumentService>().Lifestyle.Singleton();
+                    c.Export<DocumentPresenter>().As<IDocumentPresenter>();
                     c.Export<MenuService>().As<IMenuService>().Lifestyle.Singleton();
                     c.Export<LocalizeFromDb>().As<LocalizeFromDb>().Lifestyle.Singleton();
 
@@ -165,8 +166,8 @@ namespace HLab.Erp.Lims.Analysis.Loader
                 mvvm.Register(typeof(Manufacturer), typeof(ManufacturerViewModel), typeof(IViewClassDocument), typeof(ViewModeDefault));
                 mvvm.Register();
 
-                var doc = container.Locate<IDocumentService>();
-                doc.MainViewModel = container.Locate<MainWpfViewModel>();
+                //var doc = container.Locate<IDocumentService>();
+                //doc.MainViewModel = container.Locate<MainWpfViewModel>();
 
                 var info = container.Locate<IApplicationInfoService>();
                 info.PropertyChanged += (s,a) =>
